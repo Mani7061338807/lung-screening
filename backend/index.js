@@ -8,7 +8,16 @@ dotenv.config();
 connectDB();
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://lung-screening.netlify.app/",
+      "https://lung-screening-1.onrender.com/",
+    ],
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
