@@ -8,13 +8,24 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://lung-screening.netlify.app/",
+  "https://lung-screening-1.onrender.com/",
+];
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "https://lung-screening.netlify.app/",
-      "https://lung-screening-1.onrender.com/",
-    ],
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
