@@ -1,3 +1,4 @@
+import { saveUserData } from "@/api/apiCommunication";
 import Input from "@/components/Input";
 import { Screen } from "@/components/Screen";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
@@ -9,9 +10,13 @@ import { toast } from "react-toastify";
 
 const Page2 = () => {
   const dispatch = useAppDispatch();
-  const { age } = useAppSelector((state) => state.user.questions);
-  const [startAge, setStartAge] = useState(0);
-  const [packDuration, setPackDuration] = useState(0);
+  const { age, packPerDay, startedSmokingAge } = useAppSelector(
+    (state) => state.user.questions
+  );
+  const { userID, questions } = useAppSelector((state) => state.user);
+
+  const [startAge, setStartAge] = useState(startedSmokingAge);
+  const [packDuration, setPackDuration] = useState(packPerDay);
   const [ageError, setAgeError] = useState("");
 
   const handleAgeChange = (value: number) => {
@@ -21,12 +26,20 @@ const Page2 = () => {
   const handleNext = () => {
     if (!packDuration) {
       return toast.error("Select Pack Duration!");
-    } else if (ageError) return;
+    } else if (ageError || !age || !startAge) return;
     const cal = (age - startAge) * packDuration;
 
     dispatch(setQuestionField({ field: "startedSmokingAge", value: startAge }));
     dispatch(setQuestionField({ field: "packPerDay", value: packDuration }));
     dispatch(setPageType(cal >= 20 ? "RECOMMENDED" : "Page-3"));
+  };
+  const handleSubmit = async () => {
+    await saveUserData({
+      currentPage: "Page-2",
+      questions,
+      screeningResult: "incomplete",
+      userID,
+    });
   };
   return (
     <Screen>
@@ -39,7 +52,7 @@ const Page2 = () => {
           <Input
             type="number"
             placeholder="(C) Eg. 5–80 years"
-            value={startAge}
+            value={startAge as number}
             error={ageError}
             onChange={(value) => handleAgeChange(value as number)}
           />
@@ -57,7 +70,7 @@ const Page2 = () => {
           <select
             id="pack-duration"
             className="border border-[#043a66] focus:outline-[#043a66] rounded-md p-2 text-sm"
-            value={packDuration}
+            value={packDuration as number}
             onChange={(e) => setPackDuration(parseFloat(e.target.value))}
           >
             <option value={0}>(D) Select option</option>
@@ -90,7 +103,10 @@ const Page2 = () => {
             ← Back
           </button>
 
-          <p className="text-[11px] text-[#e3006e] underline text-center mt-1">
+          <p
+            className="text-[11px] cursor-pointer  text-[#e3006e] underline text-center mt-1"
+            onClick={handleSubmit}
+          >
             Click here to save your work and return later.
           </p>
         </div>

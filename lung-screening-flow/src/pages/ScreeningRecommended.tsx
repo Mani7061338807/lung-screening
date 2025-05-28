@@ -1,27 +1,18 @@
-import axiosInstance from "@/api/axiosInstance";
+import { saveUserData } from "@/api/apiCommunication";
 import { Screen } from "@/components/Screen";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { setPageType } from "@/redux/reducer/pageSlice";
-import { toast } from "react-toastify";
 
 export const ScreeningRecommended = () => {
   const dispatch = useAppDispatch();
-  const { currentPage, userID, questions } = useAppSelector(
-    (state) => state.user
-  );
+  const { userID, questions } = useAppSelector((state) => state.user);
   const handleSubmit = async () => {
-    try {
-      const res = await axiosInstance.put(`/${userID}`, {
-        currentPage,
-        questions,
-        screeningResult: "complete",
-      });
-      console.log(res.data);
-      dispatch(setPageType("THANKS_SCREEN"));
-    } catch (error) {
-      console.log(error);
-      toast.error("");
-    }
+    await saveUserData({
+      currentPage: "THANKS_SCREEN",
+      questions,
+      screeningResult: "complete",
+      userID,
+    });
   };
   return (
     <Screen>

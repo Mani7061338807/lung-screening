@@ -1,30 +1,48 @@
 import axiosInstance from "@/api/axiosInstance";
 import Input from "@/components/Input";
 import { Screen } from "@/components/Screen";
-import { useAppDispatch } from "@/hooks/redux";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { setPageType } from "@/redux/reducer/pageSlice";
 import { useState } from "react";
-import { setUserID } from "@/redux/reducer/userSlice";
+import {
+  setAllQuestions,
+  setCurrentPage,
+  setScreeningResult,
+  setUserID,
+} from "@/redux/reducer/userSlice";
 import { toast } from "react-toastify";
 
 const ReturningUser = () => {
   const [userId, setUserId] = useState("");
   const dispatch = useAppDispatch();
-
+  const user = useAppSelector((state) => state.user);
   const onGetUser = async () => {
     try {
       const result = await axiosInstance.get(`/${userId}`);
-      dispatch(setPageType("Page-0A"));
       console.log(result.data);
+      if (result.data) {
+        const { currentPage, screeningResult, userID, questions } = result.data;
+        dispatch(setAllQuestions(questions));
+        dispatch(setCurrentPage(currentPage));
+        dispatch(setUserID(userID));
+        dispatch(setScreeningResult(screeningResult));
+        dispatch(setPageType("Page-0A"));
+      }
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      toast.error(error.response.data.message);
+      toast.error(error?.response?.data.message || "Something went wrong!");
     }
   };
-
+  console.log(user);
   const onCreateUser = async () => {
-    const result = await axiosInstance.post("/create");
-    dispatch(setUserID(result.data.userID));
+    try {
+      const result = await axiosInstance.post("/create");
+      dispatch(setUserID(result.data.userID));
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast.error(error?.response?.data.message || "Somethinh went wrong");
+    }
   };
 
   return (

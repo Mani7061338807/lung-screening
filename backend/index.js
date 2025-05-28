@@ -11,8 +11,9 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://lung-screening.netlify.app/",
-  "https://lung-screening-1.onrender.com/",
+  "http://192.168.31.71:3000",
+  "https://lung-screening.netlify.app",
+  "https://lung-screening-1.onrender.com",
 ];
 
 app.use(

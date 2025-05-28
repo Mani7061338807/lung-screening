@@ -1,19 +1,19 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 // Interface for the questions
-interface QuestionData {
-  age: number;
+export interface QuestionData {
+  age: number | null;
   currentlySmoke: string;
-  quitAge: number;
-  startedSmokingAge: number;
-  packPerDay: number;
+  quitAge: number | null;
+  startedSmokingAge: number | null;
+  packPerDay: number | null;
   copd: string;
   cancer: string;
   familyCancer: string;
   race: string;
   education: string;
-  height: number;
-  weight: number;
+  height: number | null;
+  weight: number | null;
 }
 
 // Interface for the user state
@@ -28,18 +28,18 @@ interface UserState {
 const initialState: UserState = {
   userID: "",
   questions: {
-    age: 0,
+    age: null,
     currentlySmoke: "",
-    quitAge: 0,
-    startedSmokingAge: 0,
-    packPerDay: 0,
+    quitAge: null,
+    startedSmokingAge: null,
+    packPerDay: null,
     copd: "",
     cancer: "",
     familyCancer: "",
     race: "",
     education: "",
-    height: 0,
-    weight: 0,
+    height: null,
+    weight: null,
   },
   currentPage: "page-1",
   screeningResult: "incomplete",
@@ -66,6 +66,9 @@ const userSlice = createSlice({
     setScreeningResult: (state, action: PayloadAction<string>) => {
       state.screeningResult = action.payload;
     },
+    setAllQuestions: (state, action: PayloadAction<QuestionData>) => {
+      state.questions = action.payload;
+    },
     setAllUserData: (_, action: PayloadAction<UserState>) => {
       return action.payload;
     },
@@ -80,6 +83,7 @@ export const {
   setScreeningResult,
   setAllUserData,
   resetUser,
+  setAllQuestions,
 } = userSlice.actions;
 
 export default userSlice.reducer;

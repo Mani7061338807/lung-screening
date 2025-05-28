@@ -1,11 +1,11 @@
 import { Screen } from "@/components/Screen";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { setPageType } from "@/redux/reducer/pageSlice";
-import { resetUser } from "@/redux/reducer/userSlice";
+import { resetUser, setUserID } from "@/redux/reducer/userSlice";
 
 const Page0A = () => {
   const dispatch = useAppDispatch();
-  const { currentPage } = useAppSelector((state) => state.user);
+  const { currentPage, userID } = useAppSelector((state) => state.user);
 
   return (
     <Screen>
@@ -22,6 +22,7 @@ const Page0A = () => {
         className="w-full bg-[#043a66] mt-6 text-center cursor-pointer text-white font-semibold text-[16px] px-4 py-3  rounded-[12px]"
         onClick={() => {
           dispatch(resetUser());
+          dispatch(setUserID(userID));
           dispatch(setPageType("Page-1"));
         }}
       >

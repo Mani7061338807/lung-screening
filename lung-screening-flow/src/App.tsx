@@ -39,7 +39,7 @@ function App() {
     THANKS_SCREEN: <ScreeningThankYou />,
     FAQ: <FAQ />,
   };
-  
+
   return (
     <div>
       {renderPage[pageType]}

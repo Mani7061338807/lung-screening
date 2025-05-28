@@ -1,3 +1,4 @@
+import { saveUserData } from "@/api/apiCommunication";
 import Input from "@/components/Input";
 import { Screen } from "@/components/Screen";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
@@ -8,9 +9,12 @@ import { useState } from "react";
 
 const Page1A = () => {
   const dispatch = useAppDispatch();
-  const userAge = useAppSelector((state) => state.user.questions.age);
+  const { age: userAge, quitAge } = useAppSelector(
+    (state) => state.user.questions
+  );
+  const { userID, questions } = useAppSelector((state) => state.user);
 
-  const [age, setAge] = useState(0);
+  const [age, setAge] = useState(quitAge);
   const [ageError, setAgeError] = useState("");
 
   const handleAgeChange = (value: number) => {
@@ -25,6 +29,14 @@ const Page1A = () => {
     dispatch(setQuestionField({ field: "quitAge", value: age }));
     dispatch(setPageType(diffAge > 15 ? "Page-3" : "Page-2"));
   };
+  const handleSubmit = async () => {
+    await saveUserData({
+      currentPage: "Page-1A",
+      questions,
+      screeningResult: "incomplete",
+      userID,
+    });
+  };
   return (
     <Screen>
       <div className="flex flex-col gap-6 mt-28 text-[#043a66] w-full">
@@ -33,7 +45,7 @@ const Page1A = () => {
             How old were you when you quit smoking?
           </label>
           <Input
-            value={age}
+            value={age as number}
             placeholder="(B) Eg. 20–80 years"
             error={ageError}
             onChange={(value) => handleAgeChange(value as number)}
@@ -57,7 +69,10 @@ const Page1A = () => {
             ← Back
           </button>
 
-          <p className="text-[11px] text-[#d90429] underline text-center mt-1">
+          <p
+            className="text-[11px] cursor-pointer text-[#d90429] underline text-center mt-1"
+            onClick={handleSubmit}
+          >
             Click here to save your work and return later.
           </p>
         </div>

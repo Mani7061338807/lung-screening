@@ -1,17 +1,26 @@
 import { useState } from "react";
-import { useAppDispatch } from "@/hooks/redux";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { setPageType } from "@/redux/reducer/pageSlice";
 import { Screen } from "@/components/Screen";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import { setQuestionField } from "@/redux/reducer/userSlice";
+import { saveUserData } from "@/api/apiCommunication";
 
 const Page3 = () => {
   const dispatch = useAppDispatch();
+  const {
+    copd: userCopd,
+    cancer: userCancer,
+    familyCancer: userFamilyCancer,
+  } = useAppSelector((state) => state.user.questions);
+  const { userID, questions } = useAppSelector((state) => state.user);
 
-  const [copd, setCopd] = useState<string | null>(null);
-  const [cancer, setCancer] = useState<string | null>(null);
-  const [familyCancer, setFamilyCancer] = useState<string | null>(null);
+  const [copd, setCopd] = useState<string | null>(userCopd);
+  const [cancer, setCancer] = useState<string | null>(userCancer);
+  const [familyCancer, setFamilyCancer] = useState<string | null>(
+    userFamilyCancer
+  );
 
   const handleNext = () => {
     if (!copd || !cancer || !familyCancer) {
@@ -25,6 +34,14 @@ const Page3 = () => {
     dispatch(setPageType("Page-3A"));
   };
 
+  const handleSubmit = async () => {
+    await saveUserData({
+      currentPage: "Page-3",
+      questions,
+      screeningResult: "incomplete",
+      userID,
+    });
+  };
   return (
     <Screen>
       <div className="flex flex-col gap-2 items-center text-[#043a66]">
@@ -123,7 +140,10 @@ const Page3 = () => {
             ← Back
           </button>
 
-          <p className="text-[11px] text-[#e3006e] underline text-center mt-1">
+          <p
+            className="text-[11px] cursor-pointer text-[#e3006e] underline text-center mt-1"
+            onClick={handleSubmit}
+          >
             Click here to save your work and return later.
           </p>
         </div>

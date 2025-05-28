@@ -1,6 +1,7 @@
+import { saveUserData } from "@/api/apiCommunication";
 import Input from "@/components/Input";
 import { Screen } from "@/components/Screen";
-import { useAppDispatch } from "@/hooks/redux";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { setPageType } from "@/redux/reducer/pageSlice";
 import { setQuestionField } from "@/redux/reducer/userSlice";
 import { useState } from "react";
@@ -8,10 +9,18 @@ import { toast } from "react-toastify";
 
 export const Page3A = () => {
   const dispatch = useAppDispatch();
-  const [race, setRace] = useState("");
-  const [education, setEducation] = useState("");
-  const [height, setHeight] = useState(0);
-  const [weight, setWeight] = useState(0);
+  const {
+    race: Urace,
+    education: Ueducation,
+    height: Uheight,
+    weight: Uweight,
+  } = useAppSelector((state) => state.user.questions);
+  const { userID, questions } = useAppSelector((state) => state.user);
+
+  const [race, setRace] = useState(Urace);
+  const [education, setEducation] = useState(Ueducation);
+  const [height, setHeight] = useState(Uheight);
+  const [weight, setWeight] = useState(Uweight);
 
   const handleNext = () => {
     if (!race || !education || !height || !weight) {
@@ -25,6 +34,15 @@ export const Page3A = () => {
 
     dispatch(setPageType("NOT_RECOMMENDED"));
   };
+  const handleSubmit = async () => {
+    await saveUserData({
+      currentPage: "Page-3A",
+      questions,
+      screeningResult: "incomplete",
+      userID,
+    });
+  };
+
   return (
     <Screen>
       <div className="space-y-6 text-[#043a66] text-sm">
@@ -76,7 +94,7 @@ export const Page3A = () => {
             </label>
             <Input
               type="number"
-              value={height}
+              value={height as number}
               placeholder="Eg: 160"
               onChange={(value) => setHeight(value as number)}
             />
@@ -89,7 +107,7 @@ export const Page3A = () => {
             <Input
               type="number"
               placeholder="Eg: 45"
-              value={weight}
+              value={weight as number}
               onChange={(value) => setWeight(value as number)}
             />
           </div>
@@ -112,7 +130,10 @@ export const Page3A = () => {
             ← Back
           </button>
 
-          <p className="text-[11px] text-[#e3006e] underline text-center mt-1">
+          <p
+            className="text-[11px] cursor-pointer text-[#e3006e] underline text-center mt-1"
+            onClick={handleSubmit}
+          >
             Click here to save your work and return later.
           </p>
         </div>

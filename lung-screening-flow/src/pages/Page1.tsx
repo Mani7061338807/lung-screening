@@ -1,5 +1,5 @@
 import { Screen } from "@/components/Screen";
-import { useAppDispatch } from "@/hooks/redux";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { setPageType } from "@/redux/reducer/pageSlice";
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -9,8 +9,13 @@ import { validateAge } from "@/utills/validation";
 
 const Page1 = () => {
   const dispatch = useAppDispatch();
-  const [age, setAge] = useState(0);
-  const [smokingStatus, setSmokingStatus] = useState<"Yes" | "No" | "">("");
+  const { age: userAge, currentlySmoke } = useAppSelector(
+    (state) => state.user.questions
+  );
+  const { questions } = useAppSelector((state) => state.user);
+  console.log(questions);
+  const [age, setAge] = useState(userAge);
+  const [smokingStatus, setSmokingStatus] = useState<string>(currentlySmoke);
   const [ageError, setAgeError] = useState("");
 
   const handleAgeChange = (value: number) => {
@@ -44,7 +49,7 @@ const Page1 = () => {
           </label>
 
           <Input
-            value={age}
+            value={age as number}
             type="number"
             onChange={(value) => handleAgeChange(value as number)}
             placeholder="(A) Eg. 50–80 years old"
