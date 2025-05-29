@@ -60,7 +60,7 @@ const ReturningUser = () => {
         Please enter your unique ID number if you have one:
       </div>
       <Input
-        type="text"
+        type="number"
         placeholder="Eg. 00000"
         value={userId}
         onChange={(value) => setUserId(value as string)}

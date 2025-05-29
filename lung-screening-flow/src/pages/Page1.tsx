@@ -41,7 +41,7 @@ const Page1 = () => {
         Please fill out the following fields:
       </h2>
 
-      <div className="flex flex-col gap-1 w-full">
+      <div className="flex flex-col mt-6 gap-1 w-full">
         <label className="text-sm font-semibold text-left">
           What is your age?
         </label>
@@ -55,7 +55,7 @@ const Page1 = () => {
         />
       </div>
 
-      <div className="flex flex-col gap-2 w-full">
+      <div className="flex flex-col mt-6 gap-2 w-full">
         <label className="text-sm font-semibold text-left">
           Do you currently smoke? Select one.
         </label>

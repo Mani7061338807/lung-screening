@@ -1,6 +1,5 @@
 import { saveUserData } from "@/api/apiCommunication";
 import Input from "@/components/Input";
-import { Loader } from "@/components/Loader";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { setPageType } from "@/redux/reducer/pageSlice";
 import { setQuestionField } from "@/redux/reducer/userSlice";
@@ -124,7 +123,7 @@ export const Page3A = () => {
         </button>
       </div>
 
-      <div className="mt-[10px] flex flex-col items-center gap-2">
+      <div className="mt-[100px] flex flex-col items-center gap-2">
         <button
           className="text-white text-sm bg-[#0a6ec0] rounded-md px-5 py-1"
           onClick={() => dispatch(setPageType("Page-3"))}
@@ -134,7 +133,7 @@ export const Page3A = () => {
 
         <p className="cursor-pointer  underline  mt-1" onClick={handleSubmit}>
           {isSubmitPending ? (
-            <Loader />
+            <div className="text-md text-[#043a66]">Saving...</div>
           ) : (
             <div className="text-[#e3006e] text-[11px] text-center ">
               Click here to save your work and return later.

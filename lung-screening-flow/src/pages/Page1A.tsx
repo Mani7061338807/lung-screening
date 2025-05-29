@@ -1,11 +1,11 @@
 import { saveUserData } from "@/api/apiCommunication";
 import Input from "@/components/Input";
-import { Loader } from "@/components/Loader";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { setPageType } from "@/redux/reducer/pageSlice";
 import { setQuestionField } from "@/redux/reducer/userSlice";
 import { validateAge } from "@/utills/validation";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const Page1A = () => {
   const dispatch = useAppDispatch();
@@ -26,7 +26,9 @@ const Page1A = () => {
   };
   const handleNext = () => {
     const diffAge = Number(userAge) - Number(age);
-
+    if (!age) {
+      return toast.error("Please fill all the details");
+    }
     dispatch(setQuestionField({ field: "quitAge", value: age }));
     dispatch(setPageType(diffAge > 15 ? "Page-3" : "Page-2"));
   };
@@ -41,7 +43,7 @@ const Page1A = () => {
     setSubmitPending(false);
   };
   return (
-    <div className="flex flex-col gap-6 mt-28 text-[#043a66] w-full">
+    <div className="flex flex-col gap-6 mt-32 text-[#043a66] w-full">
       <div className="flex flex-col gap-2 w-full">
         <label className="text-sm font-bold text-left">
           How old were you when you quit smoking?
@@ -63,7 +65,7 @@ const Page1A = () => {
         </button>
       </div>
 
-      <div className="mt-24 flex flex-col items-center gap-2">
+      <div className="mt-[170px] flex flex-col items-center gap-2">
         <button
           className="text-white cursor-pointer text-sm bg-[#0a6ec0] rounded-md px-5 py-1"
           onClick={() => dispatch(setPageType("Page-1"))}
@@ -73,7 +75,7 @@ const Page1A = () => {
 
         <p className="cursor-pointer  underline  mt-1" onClick={handleSubmit}>
           {isSubmitPending ? (
-            <Loader />
+            <div className="text-md text-[#043a66]">Saving...</div>
           ) : (
             <div className="text-[#e3006e] text-[11px] text-center ">
               Click here to save your work and return later.

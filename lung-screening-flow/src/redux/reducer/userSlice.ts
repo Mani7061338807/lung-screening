@@ -41,7 +41,7 @@ const initialState: UserState = {
     height: null,
     weight: null,
   },
-  currentPage: "page-1",
+  currentPage: "Page-0A",
   screeningResult: "incomplete",
 };
 

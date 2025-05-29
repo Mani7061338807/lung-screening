@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import { setQuestionField } from "@/redux/reducer/userSlice";
 import { saveUserData } from "@/api/apiCommunication";
-import { Loader } from "@/components/Loader";
 
 const Page3 = () => {
   const dispatch = useAppDispatch();
@@ -46,7 +45,7 @@ const Page3 = () => {
     setSubmitPending(false);
   };
   return (
-    <div className="flex flex-col gap-2 items-center text-[#043a66]">
+    <div className="flex flex-col gap-6 items-center text-[#043a66]">
       <h2 className="font-bold text-md text-left w-full">
         Please fill out these additional questions to the best of your
         knowledge:
@@ -144,7 +143,7 @@ const Page3 = () => {
 
         <p className="cursor-pointer  underline  mt-1" onClick={handleSubmit}>
           {isSubmitPending ? (
-            <Loader />
+            <div className="text-md text-[#043a66]">Saving...</div>
           ) : (
             <div className="text-[#e3006e] text-[11px] text-center ">
               Click here to save your work and return later.

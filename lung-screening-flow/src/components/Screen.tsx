@@ -18,13 +18,13 @@ export const Screen = ({ children }: ScreenProps) => {
       className="w-full h-screen flex justify-center items-center"
     >
       <div className="relative flex justify-center items-center w-full h-full p-4">
-        <div className="relative w-full max-w-[400px] h-full rounded-[40px] overflow-hidden flex flex-col">
+        <div className="relative w-full max-w-[400px] h-full overflow-hidden flex flex-col">
           {userID && (
             <p className="text-xs absolute top-4 left-4 text-[#043a66] font-medium z-10">
               ID: {userID}
             </p>
           )}
-          <div className="flex-1 overflow-y-auto custom-scrollbar px-4 py-6">
+          <div className="flex flex-col justify-center h-screen border overflow-y-auto custom-scrollbar px-4 py-6">
             {children}
           </div>
         </div>
