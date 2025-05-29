@@ -18,6 +18,7 @@ import { Page3A } from "./pages/Page3A";
 import { ScreeningRecommended } from "./pages/ScreeningRecommended";
 import { ScreeningNotRecommended } from "./pages/ScreeningNotRecommended";
 import { ScreeningThankYou } from "./pages/ScreeningThankYou";
+import { Screen } from "./components/Screen";
 
 function App() {
   const { pageType } = useAppSelector((state) => state.page);
@@ -25,7 +26,6 @@ function App() {
     home: <HomePage />,
     TERM_AND_CONDITION: <TermsAndCondition />,
     PRIVACY_AND_POLICY: <PrivacyAndPolicy />,
-    FLOW_CHART: <FlowChart />,
     "Page-0": <ReturningUser />,
     "Page-0A": <Page0A />,
     "Page-0B": <WelcomeScreen />,
@@ -41,10 +41,14 @@ function App() {
   };
 
   return (
-    <div>
-      {renderPage[pageType]}
+    <>
+      {pageType === "FLOW_CHART" ? (
+        <FlowChart />
+      ) : (
+        <Screen>{renderPage[pageType]}</Screen>
+      )}
       <ToastContainer position="top-right" />
-    </div>
+    </>
   );
 }
 

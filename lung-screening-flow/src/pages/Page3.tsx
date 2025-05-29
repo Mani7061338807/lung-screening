@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { setPageType } from "@/redux/reducer/pageSlice";
-import { Screen } from "@/components/Screen";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import { setQuestionField } from "@/redux/reducer/userSlice";
 import { saveUserData } from "@/api/apiCommunication";
+import { Loader } from "@/components/Loader";
 
 const Page3 = () => {
   const dispatch = useAppDispatch();
@@ -21,6 +21,7 @@ const Page3 = () => {
   const [familyCancer, setFamilyCancer] = useState<string | null>(
     userFamilyCancer
   );
+  const [isSubmitPending, setSubmitPending] = useState(false);
 
   const handleNext = () => {
     if (!copd || !cancer || !familyCancer) {
@@ -35,120 +36,123 @@ const Page3 = () => {
   };
 
   const handleSubmit = async () => {
+    setSubmitPending(true);
     await saveUserData({
       currentPage: "Page-3",
       questions,
       screeningResult: "incomplete",
       userID,
     });
+    setSubmitPending(false);
   };
   return (
-    <Screen>
-      <div className="flex flex-col gap-2 items-center text-[#043a66]">
-        <h2 className="font-bold text-md text-left w-full">
-          Please fill out these additional questions to the best of your
-          knowledge:
-        </h2>
+    <div className="flex flex-col gap-2 items-center text-[#043a66]">
+      <h2 className="font-bold text-md text-left w-full">
+        Please fill out these additional questions to the best of your
+        knowledge:
+      </h2>
 
-        <div className="w-full flex flex-col gap-1">
-          <p className="text-md font-semibold">
-            Have you ever been diagnosed with COPD (a chronic lung condition)?
-          </p>
-          <div className="flex justify-between">
-            {["Yes", "No"].map((option) => (
-              <motion.button
-                key={option}
-                whileTap={{ scale: 0.95 }}
-                animate={{
-                  backgroundColor: copd === option ? "#043a66" : "#ffffff",
-                  color: copd === option ? "#ffffff" : "#043a66",
-                  borderColor: "#043a66",
-                }}
-                transition={{ duration: 0.3 }}
-                onClick={() => setCopd(option as "Yes" | "No")}
-                className="border  w-[45%] px-4 py-1 rounded-md text-sm font-medium"
-              >
-                {option}
-              </motion.button>
-            ))}
-          </div>
-        </div>
-
-        <div className="w-full flex flex-col gap-1">
-          <p className="text-sm font-semibold">
-            Have you ever been diagnosed with cancer?
-          </p>
-          <div className="flex justify-between">
-            {["Yes", "No"].map((option) => (
-              <motion.button
-                key={option}
-                whileTap={{ scale: 0.95 }}
-                animate={{
-                  backgroundColor: cancer === option ? "#043a66" : "#ffffff",
-                  color: cancer === option ? "#ffffff" : "#043a66",
-                  borderColor: "#043a66",
-                }}
-                transition={{ duration: 0.3 }}
-                onClick={() => setCancer(option as "Yes" | "No")}
-                className="border  w-[45%] px-4 py-1 rounded-md text-sm font-medium"
-              >
-                {option}
-              </motion.button>
-            ))}
-          </div>
-        </div>
-
-        <div className="w-full flex flex-col gap-1">
-          <p className="text-sm font-semibold">
-            Has anyone in your family ever been diagnosed with lung cancer?
-          </p>
-          <div className="flex justify-between">
-            {["Yes", "No"].map((option) => (
-              <motion.button
-                key={option}
-                whileTap={{ scale: 0.95 }}
-                animate={{
-                  backgroundColor:
-                    familyCancer === option ? "#043a66" : "#ffffff",
-                  color: familyCancer === option ? "#ffffff" : "#043a66",
-                  borderColor: "#043a66",
-                }}
-                transition={{ duration: 0.3 }}
-                onClick={() => setFamilyCancer(option as "Yes" | "No")}
-                className="border w-[45%] px-4 py-1 rounded-md text-sm font-medium"
-              >
-                {option}
-              </motion.button>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-6 flex justify-end w-full">
-          <button
-            className="bg-[#043a66] text-white px-5 py-1.5 rounded-md text-sm font-semibold"
-            onClick={() => handleNext()}
-          >
-            Next →
-          </button>
-        </div>
-
-        <div className="mt-[10px] flex flex-col items-center gap-2">
-          <button
-            className="text-white text-sm bg-[#0a6ec0] rounded-md px-5 py-1"
-            onClick={() => dispatch(setPageType("Page-2"))}
-          >
-            ← Back
-          </button>
-
-          <p
-            className="text-[11px] cursor-pointer text-[#e3006e] underline text-center mt-1"
-            onClick={handleSubmit}
-          >
-            Click here to save your work and return later.
-          </p>
+      <div className="w-full flex flex-col gap-1">
+        <p className="text-md font-semibold">
+          Have you ever been diagnosed with COPD (a chronic lung condition)?
+        </p>
+        <div className="flex justify-between">
+          {["Yes", "No"].map((option) => (
+            <motion.button
+              key={option}
+              whileTap={{ scale: 0.95 }}
+              animate={{
+                backgroundColor: copd === option ? "#043a66" : "#ffffff",
+                color: copd === option ? "#ffffff" : "#043a66",
+                borderColor: "#043a66",
+              }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setCopd(option as "Yes" | "No")}
+              className="border  w-[45%] px-4 py-1 rounded-md text-sm font-medium"
+            >
+              {option}
+            </motion.button>
+          ))}
         </div>
       </div>
-    </Screen>
+
+      <div className="w-full flex flex-col gap-1">
+        <p className="text-sm font-semibold">
+          Have you ever been diagnosed with cancer?
+        </p>
+        <div className="flex justify-between">
+          {["Yes", "No"].map((option) => (
+            <motion.button
+              key={option}
+              whileTap={{ scale: 0.95 }}
+              animate={{
+                backgroundColor: cancer === option ? "#043a66" : "#ffffff",
+                color: cancer === option ? "#ffffff" : "#043a66",
+                borderColor: "#043a66",
+              }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setCancer(option as "Yes" | "No")}
+              className="border  w-[45%] px-4 py-1 rounded-md text-sm font-medium"
+            >
+              {option}
+            </motion.button>
+          ))}
+        </div>
+      </div>
+
+      <div className="w-full flex flex-col gap-1">
+        <p className="text-sm font-semibold">
+          Has anyone in your family ever been diagnosed with lung cancer?
+        </p>
+        <div className="flex justify-between">
+          {["Yes", "No"].map((option) => (
+            <motion.button
+              key={option}
+              whileTap={{ scale: 0.95 }}
+              animate={{
+                backgroundColor:
+                  familyCancer === option ? "#043a66" : "#ffffff",
+                color: familyCancer === option ? "#ffffff" : "#043a66",
+                borderColor: "#043a66",
+              }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setFamilyCancer(option as "Yes" | "No")}
+              className="border w-[45%] px-4 py-1 rounded-md text-sm font-medium"
+            >
+              {option}
+            </motion.button>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-6 flex justify-end w-full">
+        <button
+          className="bg-[#043a66] text-white px-5 py-1.5 rounded-md text-sm font-semibold"
+          onClick={() => handleNext()}
+        >
+          Next →
+        </button>
+      </div>
+
+      <div className="mt-[10px] flex flex-col items-center gap-2">
+        <button
+          className="text-white text-sm bg-[#0a6ec0] rounded-md px-5 py-1"
+          onClick={() => dispatch(setPageType("Page-2"))}
+        >
+          ← Back
+        </button>
+
+        <p className="cursor-pointer  underline  mt-1" onClick={handleSubmit}>
+          {isSubmitPending ? (
+            <Loader />
+          ) : (
+            <div className="text-[#e3006e] text-[11px] text-center ">
+              Click here to save your work and return later.
+            </div>
+          )}
+        </p>
+      </div>
+    </div>
   );
 };
 

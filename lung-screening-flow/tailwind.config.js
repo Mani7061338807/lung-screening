@@ -4,9 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        bierstadt: ["bierstadt", "sans-serif"],
-        bierstadtBold: ["bierstadt-bold", "sans-serif"],
         aptos: ["Aptos", "sans-serif"],
+        bierstadt: ["Bierstadt", "sans-serif"],
       },
     },
   },

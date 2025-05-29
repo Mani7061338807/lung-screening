@@ -15,15 +15,16 @@ export const Screen = ({ children }: ScreenProps) => {
       animate={{ x: "0%" }}
       exit={{ x: "100%" }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
+      className="w-full h-screen flex justify-center items-center"
     >
-      <div className="flex justify-center items-center min-h-[93vh]">
-        <div className="custom-scrollbar relative flex justify-center items-center min-h-[85vh] border-2  border-[#043a66] w-[300px] md:w-[400px] mx-auto rounded-[40px]">
-          <div className="max-h-[80vh] overflow-y-auto p-4">
-            {userID && (
-              <p className="text-xs absolute top-8 left-4 text-[#043a66] font-medium mb-3">
-                ID: {userID}
-              </p>
-            )}
+      <div className="relative flex justify-center items-center w-full h-full p-4">
+        <div className="relative w-full max-w-[400px] h-full rounded-[40px] overflow-hidden flex flex-col">
+          {userID && (
+            <p className="text-xs absolute top-4 left-4 text-[#043a66] font-medium z-10">
+              ID: {userID}
+            </p>
+          )}
+          <div className="flex-1 overflow-y-auto custom-scrollbar px-4 py-6">
             {children}
           </div>
         </div>

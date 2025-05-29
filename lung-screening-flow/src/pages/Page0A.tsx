@@ -1,4 +1,3 @@
-import { Screen } from "@/components/Screen";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { setPageType } from "@/redux/reducer/pageSlice";
 import { resetUser, setUserID } from "@/redux/reducer/userSlice";
@@ -8,7 +7,7 @@ const Page0A = () => {
   const { currentPage, userID } = useAppSelector((state) => state.user);
 
   return (
-    <Screen>
+    <>
       <div className="font-bold text-center text-[24px] text-[#043a66] ">
         Welcome back!
       </div>
@@ -28,7 +27,7 @@ const Page0A = () => {
       >
         Click here to start a new session
       </button>
-    </Screen>
+    </>
   );
 };
 

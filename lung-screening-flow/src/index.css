@@ -1,27 +1,30 @@
+@tailwind utilities;
+@import "tailwindcss";
+
 @font-face {
   font-family: "Aptos";
-  src: url("/lung-screening-flow/public/fonts/aptos.ttf") format("truetype");
+  src: url("/fonts/aptos.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "bierstadt";
+  font-family: "Bierstadt";
   src: url("/fonts/bierstadt.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "bierstadt-bold";
+  font-family: "Bierstadt";
   src: url("/fonts/bierstadt-bold.ttf") format("truetype");
-  font-weight: normal;
+  font-weight: bold;
   font-style: normal;
 }
-
-@tailwind utilities;
-@import "tailwindcss";
-
+@theme {
+  --font-bierstadt: "Bierstadt", sans-serif;
+  --font-aptos: "Aptos", "sans-serif";
+}
 .custom-scrollbar {
   scrollbar-width: thin; /* For Firefox */
   scrollbar-color: #043a66 transparent;

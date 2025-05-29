@@ -1,4 +1,3 @@
-import { Screen } from "@/components/Screen";
 import { useState } from "react";
 
 const faqData = [
@@ -33,27 +32,25 @@ const FAQ = () => {
   };
 
   return (
-    <Screen>
-      <div className="text-[#043a66] flex flex-col gap-4 text-sm">
-        <h2 className=" font-aptos text-lg text-left mb-2">
-          Frequently asked questions
-        </h2>
+    <div className="text-[#043a66] flex flex-col gap-4 text-sm">
+      <h2 className=" font-aptos text-lg text-left mb-2">
+        Frequently asked questions
+      </h2>
 
-        {faqData.map((faq, index) => (
-          <div key={index}>
-            <button
-              onClick={() => toggleQuestion(index)}
-              className="text-[#e3006e] cursor-pointer underline font-semibold text-left w-full"
-            >
-              {faq.question}
-            </button>
-            {openIndex === index && (
-              <p className="text-[#043a66] mt-1">{faq.answer}</p>
-            )}
-          </div>
-        ))}
-      </div>
-    </Screen>
+      {faqData.map((faq, index) => (
+        <div key={index}>
+          <button
+            onClick={() => toggleQuestion(index)}
+            className="text-[#e3006e] cursor-pointer underline font-semibold text-left w-full"
+          >
+            {faq.question}
+          </button>
+          {openIndex === index && (
+            <p className="text-[#043a66] mt-1">{faq.answer}</p>
+          )}
+        </div>
+      ))}
+    </div>
   );
 };
 
