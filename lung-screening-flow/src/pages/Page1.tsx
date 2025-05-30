@@ -36,13 +36,13 @@ const Page1 = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6 items-center text-[#043a66]">
-      <h2 className="text-lg font-bold">
+    <div className="flex flex-col h-full gap-6 items-center text-[#043a66] justify-center">
+      <h2 className="text-[26px] font-bold">
         Please fill out the following fields:
       </h2>
 
       <div className="flex flex-col mt-6 gap-1 w-full">
-        <label className="text-sm font-semibold text-left">
+        <label className="text-[22px] font-semibold text-left">
           What is your age?
         </label>
 
@@ -56,7 +56,7 @@ const Page1 = () => {
       </div>
 
       <div className="flex flex-col mt-6 gap-2 w-full">
-        <label className="text-sm font-semibold text-left">
+        <label className="text-[22px] font-semibold text-left">
           Do you currently smoke? Select one.
         </label>
         <div className="flex gap-4 justify-center">
@@ -72,7 +72,7 @@ const Page1 = () => {
               }}
               transition={{ duration: 0.3 }}
               onClick={() => setSmokingStatus(option as "Yes" | "No")}
-              className="border px-4 py-1 rounded-md text-sm font-medium"
+              className="border-2 px-4 py-2 w-[45%] py-1 rounded-md text-[20px] font-medium"
             >
               {option}
             </motion.button>
@@ -85,7 +85,7 @@ const Page1 = () => {
           isFormValid
             ? "bg-[#043a66] hover:bg-[#022949]"
             : "bg-gray-300 cursor-not-allowed"
-        } flex items-center justify-center mt-24 self-end text-white px-4 py-2 rounded-md text-[14px] font-medium"`}
+        } flex items-center justify-center mt-24 self-end text-white px-4 py-2 rounded-md text-[18px] font-medium"`}
         onClick={handleNext}
         disabled={!isFormValid}
       >

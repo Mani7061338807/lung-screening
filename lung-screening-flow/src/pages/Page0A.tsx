@@ -7,18 +7,18 @@ const Page0A = () => {
   const { currentPage, userID } = useAppSelector((state) => state.user);
 
   return (
-    <>
-      <div className="font-bold text-center text-[24px] text-[#043a66] ">
+    <div className="h-full flex flex-col justify-center items-center">
+      <div className="font-bold text-center text-[28px] text-[#043a66] ">
         Welcome back!
       </div>
       <button
-        className="w-full bg-[#043a66] mt-18 text-center cursor-pointer text-white font-semibold text-[16px] px-4 py-3  rounded-[12px]"
+        className="w-[90%] bg-[#043a66] mt-18 text-center cursor-pointer text-white font-semibold text-[18px] px-4 py-3  rounded-[12px]"
         onClick={() => dispatch(setPageType(currentPage))}
       >
         Click here to continue where you left off
       </button>
       <button
-        className="w-full bg-[#043a66] mt-6 text-center cursor-pointer text-white font-semibold text-[16px] px-4 py-3  rounded-[12px]"
+        className="w-[90%] bg-[#043a66] mt-6 text-center cursor-pointer text-white font-semibold text-[18px] px-4 py-3  rounded-[12px]"
         onClick={() => {
           dispatch(resetUser());
           dispatch(setUserID(userID));
@@ -27,7 +27,7 @@ const Page0A = () => {
       >
         Click here to start a new session
       </button>
-    </>
+    </div>
   );
 };
 

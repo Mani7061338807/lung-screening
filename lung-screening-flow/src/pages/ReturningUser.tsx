@@ -54,17 +54,19 @@ const ReturningUser = () => {
   };
 
   return (
-    <>
-      <div className=" text-[#043a66] py-4 font-bold text-[16px]">
+    <div className="h-full flex flex-col items-center justify-center">
+      <div className=" text-[#043a66] py-4 font-bold text-[22px]">
         Are you a returning user? <br />
         Please enter your unique ID number if you have one:
       </div>
-      <Input
-        type="number"
-        placeholder="Eg. 00000"
-        value={userId}
-        onChange={(value) => setUserId(value as string)}
-      />
+      <div className="w-full">
+        <Input
+          type="number"
+          placeholder="Eg. 00000"
+          value={userId}
+          onChange={(value) => setUserId(value as string)}
+        />
+      </div>
       <button
         disabled={!userId}
         className={`w-full py-2 rounded  ${
@@ -79,11 +81,11 @@ const ReturningUser = () => {
         {isUserGetPending ? (
           <Loader />
         ) : (
-          <div className="text-white font-semibold">Submit</div>
+          <div className="text-white text-[18px] font-semibold">Submit</div>
         )}
       </button>
       <button
-        className="mt-18 cursor-pointer bg-[#043a66] w-full rounded px-4 py-2 "
+        className="mt-24 cursor-pointer bg-[#043a66] w-full rounded-md px-4 py-2 "
         onClick={() => {
           onCreateUser();
         }}
@@ -91,12 +93,12 @@ const ReturningUser = () => {
         {isUserCreatePending ? (
           <Loader />
         ) : (
-          <div className="text-white text-sm text-center font-semibold">
+          <div className="text-white text-[18px] text-center font-semibold">
             Click here if this is your first time
           </div>
         )}
       </button>
-    </>
+    </div>
   );
 };
 

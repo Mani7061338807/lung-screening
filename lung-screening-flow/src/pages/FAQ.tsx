@@ -33,7 +33,7 @@ const FAQ = () => {
 
   return (
     <div className="text-[#043a66] flex flex-col gap-4 text-sm">
-      <h2 className=" font-aptos text-lg text-left mb-2">
+      <h2 className="font-bold text-[26px] text-left mb-2">
         Frequently asked questions
       </h2>
 
@@ -41,12 +41,12 @@ const FAQ = () => {
         <div key={index}>
           <button
             onClick={() => toggleQuestion(index)}
-            className="text-[#e3006e] cursor-pointer underline font-semibold text-left w-full"
+            className="text-[#e3006e] cursor-pointer underline text-[20px] font-semibold text-left w-full"
           >
             {faq.question}
           </button>
           {openIndex === index && (
-            <p className="text-[#043a66] mt-1">{faq.answer}</p>
+            <p className="text-[#043a66] text-[18px] mt-1">{faq.answer}</p>
           )}
         </div>
       ))}

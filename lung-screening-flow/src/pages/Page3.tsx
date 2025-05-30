@@ -45,14 +45,14 @@ const Page3 = () => {
     setSubmitPending(false);
   };
   return (
-    <div className="flex flex-col gap-6 items-center text-[#043a66]">
-      <h2 className="font-bold text-md text-left w-full">
+    <div className="flex flex-col gap-6 items-center justify-center h-full text-[#043a66]">
+      <h2 className="font-bold text-[22px] text-left w-full">
         Please fill out these additional questions to the best of your
         knowledge:
       </h2>
 
       <div className="w-full flex flex-col gap-1">
-        <p className="text-md font-semibold">
+        <p className="text-[18px] font-semibold">
           Have you ever been diagnosed with COPD (a chronic lung condition)?
         </p>
         <div className="flex justify-between">
@@ -67,7 +67,7 @@ const Page3 = () => {
               }}
               transition={{ duration: 0.3 }}
               onClick={() => setCopd(option as "Yes" | "No")}
-              className="border  w-[45%] px-4 py-1 rounded-md text-sm font-medium"
+              className="border-2 text-[18px] w-[45%] px-4 py-1 rounded-md text-sm font-medium"
             >
               {option}
             </motion.button>
@@ -76,7 +76,7 @@ const Page3 = () => {
       </div>
 
       <div className="w-full flex flex-col gap-1">
-        <p className="text-sm font-semibold">
+        <p className="text-[20px] font-semibold">
           Have you ever been diagnosed with cancer?
         </p>
         <div className="flex justify-between">
@@ -91,7 +91,7 @@ const Page3 = () => {
               }}
               transition={{ duration: 0.3 }}
               onClick={() => setCancer(option as "Yes" | "No")}
-              className="border  w-[45%] px-4 py-1 rounded-md text-sm font-medium"
+              className="border-2 text-[18px]  w-[45%] px-4 py-1 rounded-md text-sm font-medium"
             >
               {option}
             </motion.button>
@@ -100,7 +100,7 @@ const Page3 = () => {
       </div>
 
       <div className="w-full flex flex-col gap-1">
-        <p className="text-sm font-semibold">
+        <p className="text-[20px] font-semibold">
           Has anyone in your family ever been diagnosed with lung cancer?
         </p>
         <div className="flex justify-between">
@@ -116,7 +116,7 @@ const Page3 = () => {
               }}
               transition={{ duration: 0.3 }}
               onClick={() => setFamilyCancer(option as "Yes" | "No")}
-              className="border w-[45%] px-4 py-1 rounded-md text-sm font-medium"
+              className="border-2 text-[18px] w-[45%] px-4 py-1 rounded-md text-sm font-medium"
             >
               {option}
             </motion.button>
@@ -126,7 +126,7 @@ const Page3 = () => {
 
       <div className="mt-6 flex justify-end w-full">
         <button
-          className="bg-[#043a66] text-white px-5 py-1.5 rounded-md text-sm font-semibold"
+          className="bg-[#043a66] text-white px-5 py-1.5 rounded-md text-[16px] font-semibold"
           onClick={() => handleNext()}
         >
           Next →
@@ -135,7 +135,7 @@ const Page3 = () => {
 
       <div className="mt-[10px] flex flex-col items-center gap-2">
         <button
-          className="text-white text-sm bg-[#0a6ec0] rounded-md px-5 py-1"
+          className="text-white text-[16px] bg-[#0a6ec0] font-bold rounded-md px-5 py-1"
           onClick={() => dispatch(setPageType("Page-2"))}
         >
           ← Back
@@ -143,9 +143,9 @@ const Page3 = () => {
 
         <p className="cursor-pointer  underline  mt-1" onClick={handleSubmit}>
           {isSubmitPending ? (
-            <div className="text-md text-[#043a66]">Saving...</div>
+            <div className="text-[14px] text-[#043a66]">Saving...</div>
           ) : (
-            <div className="text-[#e3006e] text-[11px] text-center ">
+            <div className="text-[#B81E7B] text-[14px] text-center ">
               Click here to save your work and return later.
             </div>
           )}

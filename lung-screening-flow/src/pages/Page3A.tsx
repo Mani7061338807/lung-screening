@@ -46,16 +46,19 @@ export const Page3A = () => {
   };
 
   return (
-    <div className="space-y-6 text-[#043a66] text-sm">
+    <div className="space-y-6 flex flex-col h-full justify-center text-[#043a66] text-sm">
       <div className="space-y-4">
         <div>
-          <label htmlFor="race" className="font-semibold block mb-1">
+          <label
+            htmlFor="race"
+            className="font-semibold text-[22px] block mb-1"
+          >
             Which race/ethnicity do you most closely identify with?
           </label>
 
           <select
             id="race"
-            className="w-full border border-[#043a66] focus:outline-none rounded-md p-2"
+            className="w-full border-2 text-[20px] border-[#043a66] focus:outline-none rounded-md p-2"
             onChange={(e) => setRace(e.target.value)}
           >
             <option>Please select one</option>
@@ -70,12 +73,15 @@ export const Page3A = () => {
         </div>
 
         <div>
-          <label htmlFor="education" className="font-semibold block mb-1">
+          <label
+            htmlFor="education"
+            className="font-semibold block text-[22px] mb-1"
+          >
             What is the highest level of education you have completed?
           </label>
           <select
             id="education"
-            className="w-full border border-[#043a66] focus:outline-none rounded-md p-2"
+            className="w-full border-2 text-[20px] border-[#043a66] focus:outline-none rounded-md p-2"
             onChange={(e) => setEducation(e.target.value)}
           >
             <option>Please select one</option>
@@ -90,7 +96,7 @@ export const Page3A = () => {
         </div>
 
         <div>
-          <label className="font-semibold block mb-1">
+          <label className="font-semibold text-[22px] block mb-1">
             What is your height? (In cm)
           </label>
           <Input
@@ -102,7 +108,7 @@ export const Page3A = () => {
         </div>
 
         <div>
-          <label className="font-semibold block mb-1">
+          <label className="font-semibold text-[22px] block mb-1">
             What is your weight? (in Kg)
           </label>
           <Input
@@ -116,16 +122,16 @@ export const Page3A = () => {
 
       <div className="mt-6 flex justify-end w-full">
         <button
-          className="bg-[#043a66] text-white px-5 py-1.5 rounded-md text-sm font-semibold"
+          className="bg-[#043a66] text-white px-5 py-1.5 rounded-md text-[16px] font-semibold"
           onClick={() => handleNext()}
         >
           Next →
         </button>
       </div>
 
-      <div className="mt-[100px] flex flex-col items-center gap-2">
+      <div className="mt-[90px] flex flex-col items-center gap-2">
         <button
-          className="text-white text-sm bg-[#0a6ec0] rounded-md px-5 py-1"
+          className="text-white text-[16px] font-bold bg-[#0a6ec0] rounded-md px-5 py-1"
           onClick={() => dispatch(setPageType("Page-3"))}
         >
           ← Back
@@ -133,9 +139,9 @@ export const Page3A = () => {
 
         <p className="cursor-pointer  underline  mt-1" onClick={handleSubmit}>
           {isSubmitPending ? (
-            <div className="text-md text-[#043a66]">Saving...</div>
+            <div className="text-[16px] text-[#043a66]">Saving...</div>
           ) : (
-            <div className="text-[#e3006e] text-[11px] text-center ">
+            <div className="text-[#B81E7B] text-[14px] text-center ">
               Click here to save your work and return later.
             </div>
           )}

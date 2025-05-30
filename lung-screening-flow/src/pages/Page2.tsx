@@ -44,10 +44,10 @@ const Page2 = () => {
     setSubmitPending(false);
   };
   return (
-    <div className="flex flex-col gap-2 mt-20 text-[#043a66] w-full">
+    <div className="flex h-full justify-center relative flex-col gap-2 text-[#043a66] w-full">
       {/* Input 1 */}
       <div className="flex flex-col gap-2 w-full">
-        <label className="text-sm font-bold text-left">
+        <label className="text-[24px] font-bold text-left">
           How old were you when you started smoking?
         </label>
         <Input
@@ -63,14 +63,14 @@ const Page2 = () => {
       <div className="flex flex-col gap-2 w-full">
         <label
           htmlFor="pack-duration"
-          className="text-sm font-bold text-left leading-snug"
+          className="text-[24px] font-bold text-left leading-snug"
         >
           When your smoking habit was at its heaviest, how long would a pack or
           multiple packs last you?
         </label>
         <select
           id="pack-duration"
-          className="border border-[#043a66] focus:outline-[#043a66] rounded-md p-2 text-sm"
+          className="border-2 text-[20px] border-[#043a66] focus:outline-[#043a66] rounded-md p-2 text-sm"
           value={packDuration as number}
           onChange={(e) => setPackDuration(parseFloat(e.target.value))}
         >
@@ -86,9 +86,9 @@ const Page2 = () => {
       </div>
 
       {/* Next Button */}
-      <div className="flex justify-end">
+      <div className="flex mt-2 justify-end">
         <button
-          className="bg-[#043a66] text-white px-5 py-1.5 cursor-pointer rounded-md text-sm font-semibold"
+          className="bg-[#043a66] text-white px-5 py-1.5 cursor-pointer rounded-md text-[16px] font-semibold"
           onClick={handleNext}
         >
           Next →
@@ -96,9 +96,9 @@ const Page2 = () => {
       </div>
 
       {/* Back and Save */}
-      <div className="mt-[130px] flex flex-col items-center gap-2">
+      <div className="absolute left-1/2 transform -translate-x-1/2 w-full bottom-4 flex flex-col items-center gap-2">
         <button
-          className="text-white cursor-pointer text-sm bg-[#0a6ec0] rounded-md px-5 py-1"
+          className="text-white cursor-pointer py-1.5 text-[16px] font-bold bg-[#0a6ec0] rounded-md px-5 py-1"
           onClick={() => dispatch(setPageType("Page-1A"))}
         >
           ← Back
@@ -106,9 +106,9 @@ const Page2 = () => {
 
         <p className="cursor-pointer  underline  mt-1" onClick={handleSubmit}>
           {isSubmitPending ? (
-            <div className="text-md text-[#043a66]">Saving...</div>
+            <div className="text-[14px] text-[#043a66]">Saving...</div>
           ) : (
-            <div className="text-[#e3006e] text-[11px] text-center ">
+            <div className="text-[#B81E7B] text-[14px] text-center ">
               Click here to save your work and return later.
             </div>
           )}

@@ -43,9 +43,9 @@ const Page1A = () => {
     setSubmitPending(false);
   };
   return (
-    <div className="flex flex-col gap-6 mt-32 text-[#043a66] w-full">
+    <div className="relative flex h-full justify-center flex-col gap-6 text-[#043a66] w-full">
       <div className="flex flex-col gap-2 w-full">
-        <label className="text-sm font-bold text-left">
+        <label className="text-[22px] font-bold text-left">
           How old were you when you quit smoking?
         </label>
         <Input
@@ -58,16 +58,16 @@ const Page1A = () => {
 
       <div className="flex justify-end">
         <button
-          className="bg-[#043a66] cursor-pointer text-white px-5 py-1.5 rounded-md text-sm font-semibold"
+          className="bg-[#043a66] cursor-pointer text-white px-5 py-1.5 rounded-md text-[18px] font-semibold"
           onClick={handleNext}
         >
           Next →
         </button>
       </div>
 
-      <div className="mt-[170px] flex flex-col items-center gap-2">
+      <div className="absolute w-full bottom-4 left-1/2 transform -translate-x-1/2  flex flex-col items-center gap-2">
         <button
-          className="text-white cursor-pointer text-sm bg-[#0a6ec0] rounded-md px-5 py-1"
+          className="text-white cursor-pointer text-[20px] py-2 bg-[#0a6ec0] rounded-md px-5 py-1"
           onClick={() => dispatch(setPageType("Page-1"))}
         >
           ← Back
@@ -77,7 +77,7 @@ const Page1A = () => {
           {isSubmitPending ? (
             <div className="text-md text-[#043a66]">Saving...</div>
           ) : (
-            <div className="text-[#e3006e] text-[11px] text-center ">
+            <div className="text-[#B81E7B] text-[14px] text-center ">
               Click here to save your work and return later.
             </div>
           )}

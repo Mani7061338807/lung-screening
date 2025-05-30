@@ -21,19 +21,19 @@ export const ScreeningRecommended = () => {
     dispatch(setPageType("THANKS_SCREEN"));
   };
   return (
-    <>
+    <div className=" h-full flex flex-col justify-center">
       <div className="space-y-6 text-[#043a66] text-sm text-center">
-        <p className="font-semibold">
+        <p className="font-semibold text-[24px]">
           Based on the information you entered, we recommend lung cancer
           screening.
         </p>
-        <p>
+        <p className="text-[20px] font-medium text-[#0064B0]">
           Your unique ID number is <span className="font-bold">{userID}</span>.
           Please keep this number in your records. Let your primary doctor know
           to send a lung cancer referral and determine the next steps.
         </p>
 
-        <div className="flex flex-col justify-center gap-4">
+        <div className="flex h-[60%] flex-col justify-between gap-4">
           <button
             className="cursor-pointer bg-[#043a66] px-5 py-1.5 rounded-md "
             onClick={handleSubmit}
@@ -41,17 +41,19 @@ export const ScreeningRecommended = () => {
             {isSubmitPending ? (
               <Loader />
             ) : (
-              <div className="text-white text-sm font-semibold">Submit</div>
+              <div className="text-white text-[18px] py-1 font-semibold">
+                Submit
+              </div>
             )}
           </button>
           <button
-            className="cursor-pointer bg-[#0a6ec0] flex justify-center items-center mx-auto w-[100px] text-white px-5 py-1.5 rounded-md text-sm font-semibold"
+            className="cursor-pointer bg-[#0a6ec0] flex justify-center items-center mx-auto w-[100px] text-white px-5 py-1.5 rounded-md text-[16px] font-semibold"
             onClick={() => dispatch(setPageType("Page-3A"))}
           >
             ← Back
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };

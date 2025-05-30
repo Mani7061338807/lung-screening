@@ -30,7 +30,7 @@ const Input = ({
             type === "number" ? parseFloat(e.target.value) : e.target.value
           )
         }
-        className={`w-full px-4 py-2 border rounded-md focus:outline-none ${
+        className={`w-full px-4 text-[20px] py-2 border-2 rounded-md focus:outline-none ${
           error ? "border-red-500 " : "border-[#043a66] "
         }`}
       />

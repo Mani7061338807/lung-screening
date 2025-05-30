@@ -9,11 +9,24 @@ export default function Flowchart() {
   );
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsLandscape(window.innerWidth > window.innerHeight);
+    const checkOrientation = () => {
+      const orientation = window.screen.orientation || {};
+      if (orientation.type) {
+        setIsLandscape(orientation.type.startsWith("landscape"));
+      } else {
+        // Fallback: use inner dimensions
+        setIsLandscape(window.innerWidth > window.innerHeight);
+      }
     };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+
+    checkOrientation(); // Run once on mount
+    window.addEventListener("resize", checkOrientation);
+    window.addEventListener("orientationchange", checkOrientation);
+
+    return () => {
+      window.removeEventListener("resize", checkOrientation);
+      window.removeEventListener("orientationchange", checkOrientation);
+    };
   }, []);
 
   if (!isLandscape) {
@@ -31,7 +44,10 @@ export default function Flowchart() {
     );
   }
   return (
-    <div className="relative h-[450px]">
+    <div
+      className="relative h-[450px]"
+      style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+    >
       <div className="relative w-[1000px]  h-[580px]">
         {/* Page Labels */}
         <div className="absolute top-[180px] left-[55px] text-xs text-gray-600">
