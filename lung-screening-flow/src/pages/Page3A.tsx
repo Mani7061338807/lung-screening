@@ -38,7 +38,7 @@ export const Page3A = () => {
   const handleSubmit = async () => {
     setSubmitPending(true);
     await saveUserData({
-      currentPage: "page-3a",
+      currentPage: "/page-3a",
       questions,
       screeningResult: "incomplete",
       userID,

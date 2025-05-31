@@ -38,7 +38,7 @@ const Page1A = () => {
   const handleSubmit = async () => {
     setSubmitPending(true);
     await saveUserData({
-      currentPage: "page-1a",
+      currentPage: "/page-1a",
       questions,
       screeningResult: "incomplete",
       userID,

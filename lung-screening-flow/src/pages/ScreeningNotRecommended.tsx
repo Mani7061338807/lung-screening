@@ -12,7 +12,7 @@ export const ScreeningNotRecommended = () => {
   const handleSubmit = async () => {
     setSubmitPending(true);
     await saveUserData({
-      currentPage: "thanks",
+      currentPage: "/thanks",
       questions,
       screeningResult: "complete",
       userID,
@@ -22,7 +22,7 @@ export const ScreeningNotRecommended = () => {
   };
   return (
     <div className=" h-full flex flex-col justify-center">
-      <div className="space-y-6 text-[#043a66] text-sm text-center">
+      <div className="space-y-6 text-[#043a66] text-sm ">
         <p className="font-semibold text-[24px]">
           Based on the information you entered, we do not recommend lung cancer
           screening at this time.
