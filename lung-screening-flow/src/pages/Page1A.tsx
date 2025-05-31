@@ -1,11 +1,11 @@
 import { saveUserData } from "@/api/apiCommunication";
 import Input from "@/components/Input";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-import { setPageType } from "@/redux/reducer/pageSlice";
 import { setQuestionField } from "@/redux/reducer/userSlice";
 import { validateAge } from "@/utills/validation";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Page1A = () => {
@@ -19,6 +19,7 @@ const Page1A = () => {
   const [ageError, setAgeError] = useState("");
   const [isSubmitPending, setSubmitPending] = useState(false);
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const handleAgeChange = (value: number) => {
     setAge(value);
@@ -32,12 +33,12 @@ const Page1A = () => {
       return toast.error(t("error_fill_details"));
     }
     dispatch(setQuestionField({ field: "quitAge", value: age }));
-    dispatch(setPageType(diffAge > 15 ? "Page-3" : "Page-2"));
+    navigate(diffAge > 15 ? "/page-3" : "/page-2");
   };
   const handleSubmit = async () => {
     setSubmitPending(true);
     await saveUserData({
-      currentPage: "Page-1A",
+      currentPage: "page-1a",
       questions,
       screeningResult: "incomplete",
       userID,
@@ -70,7 +71,7 @@ const Page1A = () => {
       <div className="absolute w-full bottom-4 left-1/2 transform -translate-x-1/2  flex flex-col items-center gap-2">
         <button
           className="text-white cursor-pointer text-[20px] py-2 bg-[#0a6ec0] rounded-md px-5 py-1"
-          onClick={() => dispatch(setPageType("Page-1"))}
+          onClick={() => navigate(-1)}
         >
           {t("back")}
         </button>

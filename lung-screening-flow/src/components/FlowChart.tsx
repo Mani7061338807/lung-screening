@@ -1,8 +1,7 @@
-import { useAppDispatch } from "@/hooks/redux";
-import { setPageType } from "@/redux/reducer/pageSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function Flowchart() {
-  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   // const [isLandscape, setIsLandscape] = useState(
   //   window.innerWidth > window.innerHeight
   // );
@@ -341,7 +340,7 @@ export default function Flowchart() {
         </div>
         <button
           className="absolute  font-bierstadt flex justify-center items-center right-0 bottom-0 bg-[#043a66] cursor-pointer text-white px-5 py-1.5 rounded-md text-sm font-semibold"
-          onClick={() => dispatch(setPageType("Page-0"))}
+          onClick={() => navigate("/returning-user")}
         >
           Next →
         </button>

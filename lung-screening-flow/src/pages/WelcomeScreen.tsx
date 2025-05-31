@@ -1,12 +1,12 @@
-import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-import { setPageType } from "@/redux/reducer/pageSlice";
+import { useAppSelector } from "@/hooks/redux";
+import { useNavigate } from "react-router-dom";
 
 const WelcomeScreen = () => {
-  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { userID } = useAppSelector((state) => state.user);
 
   return (
-    <div className="flex flex-col mt-16 gap-8 h-full justify-center">
+    <div className="flex flex-col  gap-8 h-full justify-center">
       <div className="text-[24px] font-bold text-[#043a66] ">
         Welcome to the <br />
         <span className="text-[#043a66]">Lung Cancer screening app.</span>
@@ -19,8 +19,8 @@ const WelcomeScreen = () => {
       </div>
 
       <button
-        className="bg-[#043a66] cursor-pointer flex items-center justify-center mt-36 self-end text-white px-4 py-2 rounded-md text-[16px] font-medium"
-        onClick={() => dispatch(setPageType("Page-1"))}
+        className="bg-[#043a66] cursor-pointer flex items-center justify-center mt-16 self-end text-white px-4 py-2 rounded-md text-[16px] font-medium"
+        onClick={() => navigate("/page-1")}
       >
         Next →
       </button>

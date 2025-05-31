@@ -5,7 +5,7 @@ interface PageState {
 }
 
 const initialState: PageState = {
-  pageType: "home",
+  pageType: "FLOW_CHART",
 };
 
 const pageSlice = createSlice({

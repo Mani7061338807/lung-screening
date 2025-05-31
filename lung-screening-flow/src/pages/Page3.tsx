@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-import { setPageType } from "@/redux/reducer/pageSlice";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import { setQuestionField } from "@/redux/reducer/userSlice";
 import { saveUserData } from "@/api/apiCommunication";
+import { useNavigate } from "react-router-dom";
 
 const Page3 = () => {
   const dispatch = useAppDispatch();
@@ -14,6 +14,7 @@ const Page3 = () => {
     familyCancer: userFamilyCancer,
   } = useAppSelector((state) => state.user.questions);
   const { userID, questions } = useAppSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const [copd, setCopd] = useState<string | null>(userCopd);
   const [cancer, setCancer] = useState<string | null>(userCancer);
@@ -31,13 +32,13 @@ const Page3 = () => {
     dispatch(setQuestionField({ field: "cancer", value: cancer }));
     dispatch(setQuestionField({ field: "familyCancer", value: familyCancer }));
 
-    dispatch(setPageType("Page-3A"));
+    navigate("/page-3a");
   };
 
   const handleSubmit = async () => {
     setSubmitPending(true);
     await saveUserData({
-      currentPage: "Page-3",
+      currentPage: "page-3",
       questions,
       screeningResult: "incomplete",
       userID,
@@ -45,11 +46,11 @@ const Page3 = () => {
     setSubmitPending(false);
   };
   return (
-    <div className="flex flex-col gap-6 items-center justify-center h-full text-[#043a66]">
-      <h2 className="font-bold text-[22px] text-left w-full">
+    <div className="flex flex-col gap-4 items-center justify-center overflow-y-auto text-[#043a66]">
+      <div className="font-bold text-[22px] text-left w-full">
         Please fill out these additional questions to the best of your
         knowledge:
-      </h2>
+      </div>
 
       <div className="w-full flex flex-col gap-1">
         <p className="text-[18px] font-semibold">
@@ -136,7 +137,7 @@ const Page3 = () => {
       <div className="mt-[10px] flex flex-col items-center gap-2">
         <button
           className="text-white text-[16px] bg-[#0a6ec0] font-bold rounded-md px-5 py-1"
-          onClick={() => dispatch(setPageType("Page-2"))}
+          onClick={() => navigate(-1)}
         >
           ← Back
         </button>

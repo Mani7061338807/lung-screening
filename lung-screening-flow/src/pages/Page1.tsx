@@ -1,11 +1,11 @@
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-import { setPageType } from "@/redux/reducer/pageSlice";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Input from "@/components/Input";
 import { setQuestionField } from "@/redux/reducer/userSlice";
 import { validateAge } from "@/utills/validation";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const Page1 = () => {
   const dispatch = useAppDispatch();
@@ -16,6 +16,7 @@ const Page1 = () => {
   const [smokingStatus, setSmokingStatus] = useState<string>(currentlySmoke);
   const [ageError, setAgeError] = useState("");
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const handleAgeChange = (value: number) => {
     setAge(value);
@@ -32,14 +33,14 @@ const Page1 = () => {
     dispatch(
       setQuestionField({ field: "currentlySmoke", value: smokingStatus })
     );
-    dispatch(setPageType(smokingStatus === "No" ? "Page-1A" : "Page-2"));
+    navigate(smokingStatus === "No" ? "/page-1a" : "/page-2");
   };
 
   return (
-    <div className="flex flex-col h-full gap-6 items-center text-[#043a66] justify-center">
+    <div className="flex flex-col h-full items-center text-[#043a66] justify-center">
       <h2 className="text-[26px] font-bold">{t("page1_title")}</h2>
 
-      <div className="flex flex-col mt-6 gap-1 w-full">
+      <div className="flex flex-col mt-8 gap-1 w-full">
         <label className="text-[22px] font-semibold text-left">
           {t("question_age")}
         </label>

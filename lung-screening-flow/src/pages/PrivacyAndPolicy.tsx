@@ -1,8 +1,7 @@
-import { useAppDispatch } from "@/hooks/redux";
-import { setPageType } from "@/redux/reducer/pageSlice";
+import { useNavigate } from "react-router-dom";
 
 export const PrivacyAndPolicy = () => {
-  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   return (
     <div className="text-[#043a66] text-left text-sm font-medium">
@@ -56,7 +55,9 @@ export const PrivacyAndPolicy = () => {
 
       <button
         className="w-full bg-[#043a66] cursor-pointer text-white font-semibold text-sm px-4 py-3 mt-8 rounded-[12px]"
-        onClick={() => dispatch(setPageType("FLOW_CHART"))}
+        onClick={() => {
+          navigate("/flow-chart");
+        }}
       >
         I have read and understood this privacy policy and consent to its terms
       </button>

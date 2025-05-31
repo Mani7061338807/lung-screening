@@ -1,11 +1,11 @@
 import { saveUserData } from "@/api/apiCommunication";
 import Input from "@/components/Input";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-import { setPageType } from "@/redux/reducer/pageSlice";
 import { setQuestionField } from "@/redux/reducer/userSlice";
 import { validateAge } from "@/utills/validation";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Page2 = () => {
@@ -20,6 +20,7 @@ const Page2 = () => {
   const [ageError, setAgeError] = useState("");
   const [isSubmitPending, setSubmitPending] = useState(false);
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const handleAgeChange = (value: number) => {
     setStartAge(value);
@@ -33,12 +34,12 @@ const Page2 = () => {
 
     dispatch(setQuestionField({ field: "startedSmokingAge", value: startAge }));
     dispatch(setQuestionField({ field: "packPerDay", value: packDuration }));
-    dispatch(setPageType(cal >= 20 ? "RECOMMENDED" : "Page-3"));
+    navigate(cal >= 20 ? "/recommended" : "/page-3");
   };
   const handleSubmit = async () => {
     setSubmitPending(true);
     await saveUserData({
-      currentPage: "Page-2",
+      currentPage: "page-2",
       questions,
       screeningResult: "incomplete",
       userID,
@@ -100,7 +101,7 @@ const Page2 = () => {
       <div className="absolute left-1/2 transform -translate-x-1/2 w-full bottom-4 flex flex-col items-center gap-2">
         <button
           className="text-white cursor-pointer py-1.5 text-[16px] font-bold bg-[#0a6ec0] rounded-md px-5 py-1"
-          onClick={() => dispatch(setPageType("Page-1A"))}
+          onClick={() => navigate(-1)}
         >
           {t("back")}
         </button>

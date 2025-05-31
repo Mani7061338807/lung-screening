@@ -1,8 +1,7 @@
-import { useAppDispatch } from "@/hooks/redux";
-import { setPageType } from "@/redux/reducer/pageSlice";
+import { useNavigate } from "react-router-dom";
 
 const TermsAndCondition = () => {
-  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   return (
     <div className="text-[#043a66] text-left text-sm font-medium">
@@ -66,7 +65,7 @@ const TermsAndCondition = () => {
       </p>
 
       <button
-        onClick={() => dispatch(setPageType("PRIVACY_AND_POLICY"))}
+        onClick={() => navigate("/privacy")}
         className="w-full cursor-pointer bg-[#043a66] text-white font-semibold text-sm px-4 py-3 mt-8 rounded-[12px]"
       >
         I agree to the terms of use.

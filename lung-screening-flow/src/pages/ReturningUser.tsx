@@ -1,7 +1,6 @@
 import axiosInstance from "@/api/axiosInstance";
 import Input from "@/components/Input";
 import { useAppDispatch } from "@/hooks/redux";
-import { setPageType } from "@/redux/reducer/pageSlice";
 import { useState } from "react";
 import {
   setAllQuestions,
@@ -12,6 +11,7 @@ import {
 import { toast } from "react-toastify";
 import { Loader } from "@/components/Loader";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const ReturningUser = () => {
   const [userId, setUserId] = useState("");
@@ -20,20 +20,20 @@ const ReturningUser = () => {
   const [isUserCreatePending, setUserCreatePending] = useState<true | false>(
     false
   );
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
   const onGetUser = async () => {
     try {
       setUserGetPending(true);
       const result = await axiosInstance.get(`/${userId}`);
-      console.log(result);
       if (result.data) {
         const { currentPage, screeningResult, userID, questions } = result.data;
         dispatch(setAllQuestions(questions));
         dispatch(setCurrentPage(currentPage));
         dispatch(setUserID(userID));
         dispatch(setScreeningResult(screeningResult));
-        dispatch(setPageType("Page-0A"));
+        navigate("/page-0a");
       }
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -48,7 +48,7 @@ const ReturningUser = () => {
       setUserCreatePending(true);
       const result = await axiosInstance.post("/create");
       dispatch(setUserID(result.data.userID));
-      dispatch(setPageType("Page-0B"));
+      navigate("/page-0b");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(error?.response?.data.message || t("error_generic"));

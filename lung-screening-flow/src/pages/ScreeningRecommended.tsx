@@ -1,24 +1,24 @@
 import { saveUserData } from "@/api/apiCommunication";
 import { Loader } from "@/components/Loader";
-import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-import { setPageType } from "@/redux/reducer/pageSlice";
+import { useAppSelector } from "@/hooks/redux";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const ScreeningRecommended = () => {
-  const dispatch = useAppDispatch();
   const { userID, questions } = useAppSelector((state) => state.user);
   const [isSubmitPending, setSubmitPending] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     setSubmitPending(true);
     await saveUserData({
-      currentPage: "THANKS_SCREEN",
+      currentPage: "thanks",
       questions,
       screeningResult: "complete",
       userID,
     });
     setSubmitPending(false);
-    dispatch(setPageType("THANKS_SCREEN"));
+    navigate("/thanks");
   };
   return (
     <div className=" h-full flex flex-col justify-center">
@@ -33,7 +33,7 @@ export const ScreeningRecommended = () => {
           to send a lung cancer referral and determine the next steps.
         </p>
 
-        <div className="flex h-[60%] flex-col justify-between gap-4">
+        <div className="flex h-[40%] flex-col justify-between gap-4">
           <button
             className="cursor-pointer bg-[#043a66] px-5 py-1.5 rounded-md "
             onClick={handleSubmit}
@@ -48,7 +48,7 @@ export const ScreeningRecommended = () => {
           </button>
           <button
             className="cursor-pointer bg-[#0a6ec0] flex justify-center items-center mx-auto w-[100px] text-white px-5 py-1.5 rounded-md text-[16px] font-semibold"
-            onClick={() => dispatch(setPageType("Page-3A"))}
+            onClick={() => navigate(-1)}
           >
             ← Back
           </button>

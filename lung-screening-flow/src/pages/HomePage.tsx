@@ -1,12 +1,11 @@
-import { useAppDispatch } from "@/hooks/redux";
-import { setPageType } from "@/redux/reducer/pageSlice";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-  const dispatch = useAppDispatch();
   const [termsAccepted, setTermsAccepted] = useState<boolean>(false);
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
 
   // Helper to get a cookie
   const getCookie = (name: string) => {
@@ -38,9 +37,9 @@ const HomePage = () => {
   const handleStart = () => {
     if (!termsAccepted) {
       setCookie("termsAccepted", "true", 365); // Store for 1 year
-      dispatch(setPageType("TERM_AND_CONDITION"));
+      navigate("/terms");
     } else {
-      dispatch(setPageType("FLOW_CHART")); // Replace with actual next page
+      navigate("/flow-chart");
     }
   };
 
