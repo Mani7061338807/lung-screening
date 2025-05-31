@@ -1,0 +1,63 @@
+{
+  "home_page_title": "Detección de Cáncer de Pulmón",
+  "start_screening": "Comenzar detección",
+  "language_switch": "English",
+  "faq_lung": "¿Tiene preguntas sobre la detección del cáncer de pulmón?",
+  "contact": "Contáctenos",
+  "faq_title": "Preguntas frecuentes",
+  "faq": [
+    {
+      "question": "¿Quién necesita una detección de cáncer de pulmón?",
+      "answer": "Existen varias guías sobre quién debe someterse a una detección de cáncer de pulmón. Una organización llamada el Grupo de Trabajo de Servicios Preventivos de EE.UU. recomienda exámenes para personas de 50 a 80 años, con un historial de fumar 20 paquetes-año, que fumen actualmente o hayan dejado de fumar en los últimos 15 años. Un \"paquete-año\" depende de cuántos cigarrillos se fuman por día durante cuántos años. La detección puede reducir las posibilidades de morir por cáncer de pulmón."
+    },
+    {
+      "question": "¿Qué factores aumentan el riesgo de cáncer de pulmón?",
+      "answer": "Fumar es la principal causa del cáncer de pulmón. Aproximadamente el 80% de las muertes por cáncer de pulmón se deben al tabaquismo. Otros factores de riesgo incluyen la exposición al humo de segunda mano, gas radón, asbesto, contaminación del aire y antecedentes familiares de cáncer de pulmón."
+    },
+    {
+      "question": "¿Cómo funciona la detección del cáncer de pulmón y hay riesgos en las imágenes?",
+      "answer": "La detección del cáncer de pulmón se realiza con una prueba llamada tomografía computarizada de baja dosis. Toma imágenes de los pulmones en pocos minutos y es indolora. Puede detectar anomalías tempranas. Los riesgos pueden incluir falsos positivos y exposición a radiación, pero los beneficios superan los riesgos."
+    },
+    {
+      "question": "¿Por qué es importante someterse a una detección de cáncer de pulmón?",
+      "answer": "El cáncer de pulmón a menudo se detecta en etapas avanzadas. La detección ayuda a encontrar el cáncer temprano, lo que lo hace más tratable y mejora las tasas de supervivencia."
+    },
+    {
+      "question": "¿Con quién puedo comunicarme sobre esta aplicación?",
+      "answer": "Para cualquier pregunta, inquietud o comentario sobre esta aplicación, por favor contacte a su equipo de soporte local o complete esta encuesta."
+    }
+  ],
+  "welcome_back": "¡Bienvenido de nuevo!",
+  "continue_session": "Haz clic aquí para continuar donde lo dejaste",
+  "start_new_session": "Haz clic aquí para comenzar una nueva sesión",
+  "page1_title": "Por favor, complete los siguientes campos:",
+  "question_age": "¿Cuál es su edad?",
+  "placeholder_age": "(A) Ej. 50–80 años",
+  "question_smoke": "¿Fuma actualmente? Seleccione una opción.",
+  "yes": "Sí",
+  "no": "No",
+  "next": "Siguiente →",
+  "returning_title": "¿Es usted un usuario recurrente? \nPor favor, introduzca su número de identificación único si lo tiene:",
+  "input_placeholder": "Ej. 00000",
+  "submit": "Enviar",
+  "first_time": "Haga clic aquí si es su primera vez",
+  "error_generic": "¡Algo salió mal!",
+  "quit_age_label": "¿Qué edad tenía cuando dejó de fumar?",
+  "quit_age_placeholder": "(B) Ej. 20–80 años",
+  "back": "← Atrás",
+  "save_work": "Haga clic aquí para guardar su progreso y volver más tarde.",
+  "saving": "Guardando...",
+  "error_fill_details": "Por favor complete todos los campos",
+  "start_smoking_age_label": "¿Qué edad tenía cuando empezó a fumar?",
+  "start_smoking_age_placeholder": "(C) Ej. 5–80 años",
+  "pack_duration_label": "Cuando su hábito de fumar era más fuerte, ¿cuánto tiempo le duraba un paquete o varios paquetes?",
+  "pack_duration_select": "(D) Seleccione una opción",
+  "pack_duration_3": "3 o más paquetes por día",
+  "pack_duration_2": "2 paquetes por día",
+  "pack_duration_1_5": "1.5 paquete por día",
+  "pack_duration_1": "1 paquete por día",
+  "pack_duration_half": "1/2 paquete por semana",
+  "pack_duration_0_3": "2 paquetes por semana",
+  "pack_duration_week": "1 paquete por semana o menos",
+  "error_pack_duration": "¡Seleccione la duración del paquete!"
+}

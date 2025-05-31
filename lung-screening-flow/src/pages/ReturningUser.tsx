@@ -11,6 +11,7 @@ import {
 } from "@/redux/reducer/userSlice";
 import { toast } from "react-toastify";
 import { Loader } from "@/components/Loader";
+import { useTranslation } from "react-i18next";
 
 const ReturningUser = () => {
   const [userId, setUserId] = useState("");
@@ -19,10 +20,13 @@ const ReturningUser = () => {
   const [isUserCreatePending, setUserCreatePending] = useState<true | false>(
     false
   );
+  const { t } = useTranslation();
+
   const onGetUser = async () => {
     try {
       setUserGetPending(true);
       const result = await axiosInstance.get(`/${userId}`);
+      console.log(result);
       if (result.data) {
         const { currentPage, screeningResult, userID, questions } = result.data;
         dispatch(setAllQuestions(questions));
@@ -34,7 +38,7 @@ const ReturningUser = () => {
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      toast.error(error?.response?.data.message || "Something went wrong!");
+      toast.error(error?.response?.data.message || t("error_generic"));
     } finally {
       setUserGetPending(false);
     }
@@ -47,7 +51,7 @@ const ReturningUser = () => {
       dispatch(setPageType("Page-0B"));
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      toast.error(error?.response?.data.message || "Somethinh went wrong");
+      toast.error(error?.response?.data.message || t("error_generic"));
     } finally {
       setUserCreatePending(false);
     }
@@ -56,13 +60,12 @@ const ReturningUser = () => {
   return (
     <div className="h-full flex flex-col items-center justify-center">
       <div className=" text-[#043a66] py-4 font-bold text-[22px]">
-        Are you a returning user? <br />
-        Please enter your unique ID number if you have one:
+        {t("returning_title")}
       </div>
       <div className="w-full">
         <Input
           type="number"
-          placeholder="Eg. 00000"
+          placeholder={t("input_placeholder")}
           value={userId}
           onChange={(value) => setUserId(value as string)}
         />
@@ -81,7 +84,9 @@ const ReturningUser = () => {
         {isUserGetPending ? (
           <Loader />
         ) : (
-          <div className="text-white text-[18px] font-semibold">Submit</div>
+          <div className="text-white text-[18px] font-semibold">
+            {t("submit")}
+          </div>
         )}
       </button>
       <button
@@ -94,7 +99,7 @@ const ReturningUser = () => {
           <Loader />
         ) : (
           <div className="text-white text-[18px] text-center font-semibold">
-            Click here if this is your first time
+            {t("first_time")}
           </div>
         )}
       </button>

@@ -5,6 +5,7 @@ import { setPageType } from "@/redux/reducer/pageSlice";
 import { setQuestionField } from "@/redux/reducer/userSlice";
 import { validateAge } from "@/utills/validation";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 
 const Page2 = () => {
@@ -18,6 +19,7 @@ const Page2 = () => {
   const [packDuration, setPackDuration] = useState(packPerDay);
   const [ageError, setAgeError] = useState("");
   const [isSubmitPending, setSubmitPending] = useState(false);
+  const { t } = useTranslation();
 
   const handleAgeChange = (value: number) => {
     setStartAge(value);
@@ -25,7 +27,7 @@ const Page2 = () => {
   };
   const handleNext = () => {
     if (!packDuration) {
-      return toast.error("Select Pack Duration!");
+      return toast.error(t("error_pack_duration"));
     } else if (ageError || !age || !startAge) return;
     const cal = (age - startAge) * packDuration;
 
@@ -48,11 +50,11 @@ const Page2 = () => {
       {/* Input 1 */}
       <div className="flex flex-col gap-2 w-full">
         <label className="text-[24px] font-bold text-left">
-          How old were you when you started smoking?
+          {t("start_smoking_age_label")}
         </label>
         <Input
           type="number"
-          placeholder="(C) Eg. 5–80 years"
+          placeholder={t("start_smoking_age_placeholder")}
           value={startAge as number}
           error={ageError}
           onChange={(value) => handleAgeChange(value as number)}
@@ -65,8 +67,7 @@ const Page2 = () => {
           htmlFor="pack-duration"
           className="text-[24px] font-bold text-left leading-snug"
         >
-          When your smoking habit was at its heaviest, how long would a pack or
-          multiple packs last you?
+          {t("pack_duration_label")}
         </label>
         <select
           id="pack-duration"
@@ -74,14 +75,14 @@ const Page2 = () => {
           value={packDuration as number}
           onChange={(e) => setPackDuration(parseFloat(e.target.value))}
         >
-          <option value={0}>(D) Select option</option>
-          <option value={3}>3 or more packs a day</option>
-          <option value={2}>2 packs a day</option>
-          <option value={1.5}>1.5 pack a day</option>
-          <option value={1}>1 pack a day</option>
-          <option value={0.5}>1/2 pack a week</option>
-          <option value={0.3}>2 pack a week</option>
-          <option value={1}>1 pack a week or less</option>
+          <option value={0}>{t("pack_duration_select")}</option>
+          <option value={3}>{t("pack_duration_3")}</option>
+          <option value={2}>{t("pack_duration_2")}</option>
+          <option value={1.5}>{t("pack_duration_1_5")}</option>
+          <option value={1}>{t("pack_duration_1")}</option>
+          <option value={0.5}>{t("pack_duration_half")}k</option>
+          <option value={0.3}>{t("pack_duration_0_3")}</option>
+          <option value={1}>{t("pack_duration_week")}</option>
         </select>
       </div>
 
@@ -91,7 +92,7 @@ const Page2 = () => {
           className="bg-[#043a66] text-white px-5 py-1.5 cursor-pointer rounded-md text-[16px] font-semibold"
           onClick={handleNext}
         >
-          Next →
+          {t("next")}
         </button>
       </div>
 
@@ -101,15 +102,15 @@ const Page2 = () => {
           className="text-white cursor-pointer py-1.5 text-[16px] font-bold bg-[#0a6ec0] rounded-md px-5 py-1"
           onClick={() => dispatch(setPageType("Page-1A"))}
         >
-          ← Back
+          {t("back")}
         </button>
 
         <p className="cursor-pointer  underline  mt-1" onClick={handleSubmit}>
           {isSubmitPending ? (
-            <div className="text-[14px] text-[#043a66]">Saving...</div>
+            <div className="text-[14px] text-[#043a66]">{t("saving")}</div>
           ) : (
             <div className="text-[#B81E7B] text-[14px] text-center ">
-              Click here to save your work and return later.
+              {t("save_work")}
             </div>
           )}
         </p>

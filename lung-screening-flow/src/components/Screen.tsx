@@ -17,7 +17,7 @@ export const Screen = ({ children }: ScreenProps) => {
       animate={{ x: "0%" }}
       exit={{ x: "100%" }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
-      className={`w-full xl:h-screen  h-[90vh] ${
+      className={`w-full sm:h-screen  h-[90vh] ${
         pageType === "THANKS_SCREEN" ? "bg-[#0064B0]" : ""
       }`}
     >

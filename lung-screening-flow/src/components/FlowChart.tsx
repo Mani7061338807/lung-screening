@@ -1,51 +1,53 @@
 import { useAppDispatch } from "@/hooks/redux";
 import { setPageType } from "@/redux/reducer/pageSlice";
-import { useEffect, useState } from "react";
 
 export default function Flowchart() {
   const dispatch = useAppDispatch();
-  const [isLandscape, setIsLandscape] = useState(
-    window.innerWidth > window.innerHeight
-  );
+  // const [isLandscape, setIsLandscape] = useState(
+  //   window.innerWidth > window.innerHeight
+  // );
 
-  useEffect(() => {
-    const checkOrientation = () => {
-      const orientation = window.screen.orientation || {};
-      if (orientation.type) {
-        setIsLandscape(orientation.type.startsWith("landscape"));
-      } else {
-        // Fallback: use inner dimensions
-        setIsLandscape(window.innerWidth > window.innerHeight);
-      }
-    };
+  // useEffect(() => {
+  //   const checkOrientation = () => {
+  //     const orientation = window.screen.orientation || {};
+  //     console.log(orientation);
+  //     if (orientation.type) {
+  //       setIsLandscape(orientation.type.startsWith("landscape"));
+  //     } else {
+  //       // Fallback: use inner dimensions
+  //       setIsLandscape(window.innerWidth > window.innerHeight);
+  //     }
+  //   };
 
-    checkOrientation(); // Run once on mount
-    window.addEventListener("resize", checkOrientation);
-    window.addEventListener("orientationchange", checkOrientation);
+  //   checkOrientation(); // Run once on mount
+  //   window.addEventListener("resize", checkOrientation);
+  //   window.addEventListener("orientationchange", checkOrientation);
 
-    return () => {
-      window.removeEventListener("resize", checkOrientation);
-      window.removeEventListener("orientationchange", checkOrientation);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("resize", checkOrientation);
+  //     window.removeEventListener("orientationchange", checkOrientation);
+  //   };
+  // }, []);
 
-  if (!isLandscape) {
-    return (
-      <div className="w-full h-screen flex items-center justify-center text-center px-4">
-        <div>
-          <h2 className="text-xl font-semibold mb-2 text-[#043a66] font-bierstadt">
-            Please rotate your device
-          </h2>
-          <p className="text-[#043a66] font-bierstadt">
-            This flowchart works best in <strong>landscape</strong> mode.
-          </p>
-        </div>
-      </div>
-    );
-  }
+  // if (!isLandscape) {
+  //   return (
+  //     <div className="w-full h-screen flex items-center justify-center text-center px-4">
+  //       <div>
+  //         <h2 className="text-xl font-semibold mb-2 text-[#043a66] font-bierstadt">
+  //           Please rotate your device
+  //         </h2>
+  //         <p className="text-[#043a66] font-bierstadt">
+  //           This flowchart works best in <strong>landscape</strong> mode.
+  //         </p>
+  //       </div>
+  //     </div>
+  //   );
+  // }
+  // aarav
+  // parori age 10
   return (
     <div
-      className="relative h-[450px]"
+      className="relative custom-scrollbar overflow-x-auto h-full"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
       <div className="relative w-[1000px]  h-[580px]">
